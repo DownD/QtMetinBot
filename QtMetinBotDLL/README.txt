@@ -1,0 +1,1 @@
+This Class allows for an easy search and read of a file
