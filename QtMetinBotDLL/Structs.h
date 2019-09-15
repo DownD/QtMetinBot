@@ -80,6 +80,14 @@ enum MapFlags
 	ATTRIBUTE_BANPK = (1 << 2),
 };
 
+struct AutoPotionInfo
+{
+	bool bActivated;							
+	long currentAmount;					
+	long totalAmount;					
+	long inventorySlotIndex;			
+};
+
 
 const std::set<DWORD> BossMap({ NINE_TAILS_ID ,GIANT_TURTLE_ID ,ORC_CHEF,GHOST_TREE_LORD });
 

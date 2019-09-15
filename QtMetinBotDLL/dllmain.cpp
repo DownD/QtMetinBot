@@ -12,7 +12,7 @@
 #endif
 
 #ifdef _DEBUG
-#define TEST_MODE
+#define WRITE_CONSOLE
 #endif
 
 HMODULE Module;

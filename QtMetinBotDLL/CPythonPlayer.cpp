@@ -26,6 +26,8 @@ CPythonPlayer::CPythonPlayer(CPythonCharacterManager* manager, CPythonNetwork* n
 	_PyAppendChat = mem->GetPythonMethod(CHAT_PYTHON_MODULE, "AppendChat");
 	_PyIsPossibleEmoticon = mem->GetPythonMethod(CHRMGR_PYTHON_MODULE, "IsPossibleEmoticon");
 	_PyIsMountingHorse = mem->GetPythonMethod(PLAYER_PYTHON_MODULE, "IsMountingHorse");
+	_PySetAutoPotionInfo = mem->GetPythonMethod(PLAYER_PYTHON_MODULE, "SetAutoPotionInfo");
+	_PyGetAutoPotionInfo = mem->GetPythonMethod(PLAYER_PYTHON_MODULE, "GetAutoPotionInfo");
 
 	if (_CPickCloseItem) swPickCloseItem = C_FUNCTION; else swPickCloseItem = PY_FUNCTION;
 	DEBUG_INFO(COLOR_GREEN, "PythonPlayer Sucessfully set");
@@ -75,6 +77,19 @@ bool CPythonPlayer::IsMountingHorse()
 	return (bool)result;
 }
 
+void CPythonPlayer::getPotionInfo(int potionType, AutoPotionInfo * potionInfo)
+{
+	PyObject* obj = _PyGetAutoPotionInfo(NULL, Py_BuildValue("(i)", potionType));
+	PyTuple_GetByte(obj, 0, (unsigned char*)&potionInfo->bActivated);
+	PyTuple_GetInteger(obj, 1, (int*)&potionInfo->currentAmount);
+	PyTuple_GetInteger(obj, 2, (int*)&potionInfo->totalAmount);
+	PyTuple_GetInteger(obj, 3, (int*)&potionInfo->inventorySlotIndex);
+}
+
+void CPythonPlayer::setPotionInfo(int potionType, AutoPotionInfo & potion)
+{
+	PyObject* obj = _PySetAutoPotionInfo(NULL, Py_BuildValue("(ibiii)",potionType, potion.bActivated, potion.currentAmount, potion.totalAmount, potion.inventorySlotIndex));
+}
 DWORD CPythonPlayer::getItemCount(TItemPos pos)
 {
 	PyObject* obj = _PyGetItemCount(NULL, Py_BuildValue("(bi)", pos.windowType, pos.itemSlot));

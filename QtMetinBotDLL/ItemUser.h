@@ -23,7 +23,7 @@
 #define ENCHANT_ITEM 71084
 #define GREEN_CHANGER 71151
 
-#define TIME_POTS 30000
+#define TIME_POTS 10000
 
 
 class ItemUser : public BotFeature

@@ -10,7 +10,7 @@
 #define SKILL_HORSE_ATTACK 9
 
 #define MAIN_INVENTORY 1
-#define MAIN_INVENTORY_SIZE 40
+#define MAIN_INVENTORY_SIZE 200
 
 #define PICKUP_PYTHON_FUNCTION "PickCloseItem"
 
@@ -46,6 +46,9 @@ public:
 	void appendChat(const char* str,int num = 3);
 	bool isPossibleEmiticon();
 	bool IsMountingHorse();
+	void getPotionInfo(int potionType, AutoPotionInfo* potionInfo);
+	void setPotionInfo(int potionType, AutoPotionInfo & potion);
+
 
 
 
@@ -99,6 +102,8 @@ private:
 	PythonFunction _PyAppendChat;
 	PythonFunction _PyIsPossibleEmoticon;
 	PythonFunction _PyIsMountingHorse;
+	PythonFunction _PyGetAutoPotionInfo;
+	PythonFunction _PySetAutoPotionInfo;
 
 	//C Memory Functions
 	tPickCloseItem _CPickCloseItem;
