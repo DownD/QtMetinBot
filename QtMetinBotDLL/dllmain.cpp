@@ -12,7 +12,7 @@
 #endif
 
 #ifdef _DEBUG
-#define WRITE_CONSOLE
+#define TEST_MODE
 #endif
 
 HMODULE Module;
@@ -47,7 +47,7 @@ void Init()
 #ifdef TEST_MODE
 	CMD *cmd = CMD::createInstance(sdk);
 	cmd->Init(Module);
-	return false;
+	return;
 #endif
 
 	//SAfer way to hook would be better

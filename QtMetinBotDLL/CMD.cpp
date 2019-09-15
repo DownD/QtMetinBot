@@ -506,7 +506,8 @@ void CMD::testPythonBackground()
 		printf("Background\n\n");
 
 		printf("1 - Is location blocked (float,float)\n");
-		printf("2 - Exit\n");
+		printf("2 - Draw map based on attr blocked\n");
+		printf("3 - Exit\n");
 
 
 		char str[200] = { 0 };
@@ -533,7 +534,25 @@ void CMD::testPythonBackground()
 			printf("Result: %d\n" ,sdk->getPythonBackground()->isLocationBlocked(std::atof(strings[1].data()), std::atof(strings[2].data())));
 			break;
 		}
-		case 2:
+		case 2: {
+			for (int y = 0; y < 100000; y+=1000) {
+				printf("Y: %d| ", y);
+				for (int x = 0; x < 100000; x+= 1000) {
+					bool result = sdk->getPythonBackground()->isLocationBlocked((float)x, (float)y);
+					if (result) { printf("B"); }
+					else if (sdk->getPythonBackground()->isAttrOn((float)x, (float)y, MapFlags::ATTRIBUTE_BANPK)) {
+						printf("P");
+					}
+					else if (sdk->getPythonBackground()->isAttrOn((float)x, (float)y, MapFlags::ATTRIBUTE_WATER)) {
+						printf("W");
+					}
+					else { printf(" "); }
+				}
+				printf("\n");
+			}
+			break;
+		}
+		case 3:
 			return;
 		default:
 			continue;
