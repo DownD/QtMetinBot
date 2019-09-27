@@ -131,9 +131,6 @@
     <ClCompile Include="SkillUser.cpp">
       <Filter>Bot\Features</Filter>
     </ClCompile>
-    <ClCompile Include="NetworkProcessHook.cpp">
-      <Filter>Bot\Modes</Filter>
-    </ClCompile>
     <ClCompile Include="ExpBot.cpp">
       <Filter>Bot\Modes</Filter>
     </ClCompile>
@@ -166,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkProcessHook.cpp">
+      <Filter>Bot\Hooks</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

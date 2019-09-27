@@ -66,7 +66,12 @@ void CPythonPlayer::appendChat(const char * str, int num)
 
 bool CPythonPlayer::isPossibleEmiticon()
 {
-	PyObject* result = _PyIsPossibleEmoticon(NULL, Py_BuildValue("(i)", -1));
+	PyObject* result;
+#ifdef AELDRA_SERVER
+	result = _PyIsPossibleEmoticon(NULL, Py_BuildValue("(ii)",-1,938));
+#else
+	result = _PyIsPossibleEmoticon(NULL, Py_BuildValue("(i)", -1));
+#endif
 	return (bool)PyInt_AsLong(result);
 }
 
