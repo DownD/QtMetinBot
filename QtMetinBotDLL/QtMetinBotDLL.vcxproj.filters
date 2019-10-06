@@ -167,6 +167,12 @@
     <ClCompile Include="NetworkProcessHook.cpp">
       <Filter>Bot\Hooks</Filter>
     </ClCompile>
+    <ClCompile Include="Movement.cpp">
+      <Filter>Bot\Features</Filter>
+    </ClCompile>
+    <ClCompile Include="aStar.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CPythonBackground.h">
@@ -279,6 +285,12 @@
     </ClInclude>
     <ClInclude Include="UserInterface.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Movement.h">
+      <Filter>Bot\Features</Filter>
+    </ClInclude>
+    <ClInclude Include="aStar.h">
+      <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

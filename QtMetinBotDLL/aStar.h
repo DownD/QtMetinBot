@@ -5,25 +5,18 @@
 #include <list>
 #include <set>
 
-
-class Point2D {
+class Layout {
 public:
-	Point2D(float x = 0.f, float y = 0.f) { this->x = x; this->y = y; }
+	//Heuristics function
+	virtual float calculateH(Layout & a);
 
-	inline float distance(Point2D* p) { return sqrt((p->x - x)*(p->x - x) + (p->y - y)*(p->y - y)); }
-	float angle(Point2D *p);
-	inline void absoluteY() { y = abs(y); }
+	virtual bool operator==(Layout & a);
 
-	inline int getIntX() { return (int)x; }
-	inline int getIntY() { return (int)y; }
+	//Returns childrens of that point
+	virtual void getChilds(std::list<Layout>* path);
 
-	inline void setIntX(int x) { this->x = x; }
-	inline void setIntY(int y) { this->y = y; }
-
-	bool operator==(Point2D & a) { return getIntX() == a.getIntX() && getIntY() == a.getIntY(); }
-
-	float x;
-	float y;
+	//Returns cost
+	virtual float getG();
 };
 
 
@@ -36,7 +29,7 @@ public:
 	aStar();
 	~aStar();
 
-	bool doAStar(Point2D &source, Point2D& dest, std::list<Point2D>* path);
+	bool doAStar(Layout &source, Layout& dest, std::list<Layout>* path);
 
 
 
@@ -44,19 +37,19 @@ protected:
 
 	struct Node {
 
-		Node(float distStartToPoint, float distPointToFinal, Point2D pos, Point2D parentPos) : g(distStartToPoint), h(distPointToFinal), pos(pos), f(distStartToPoint+ distPointToFinal), parent(parentPos) {}
+		Node(float distStartToPoint, float distPointToFinal, Layout pos, Layout parentPos) : g(distStartToPoint), h(distPointToFinal), pos(pos), f(distStartToPoint+ distPointToFinal), parent(parentPos) {}
 
 		bool operator ==(Node &a) { return a.pos == pos; }
 		float g = 0;
 		float h = 0;
 		float f = 0;
 
-		Point2D parent;
-		Point2D pos;
+		Layout parent;
+		Layout pos;
 	};
-	bool findParentPoint(Point2D & p, Point2D *parentBuffer);
-	bool tracePath(Point2D &start, Point2D& end, std::list<Point2D>* point);
-	virtual void getAvailablePointsArround(std::vector<Point2D> *arroundPoints, Point2D &pos) = 0;
+	bool findParentPoint(Layout & p, Layout *parentBuffer);
+	bool tracePath(Layout &start, Layout& end, std::list<Layout>* point);
+	virtual void getAvailablePointsArround(std::vector<Layout> *arroundPoints, Layout &pos) = 0;
 
 
 	std::vector<Node> closedList;

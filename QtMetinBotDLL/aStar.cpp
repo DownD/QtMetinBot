@@ -11,12 +11,12 @@ aStar::~aStar()
 {
 }
 
-bool aStar::doAStar(Point2D& source, Point2D& dest, std::list<Point2D> *path)
+bool aStar::doAStar(Layout& source, Layout& dest, std::list<Layout> *path)
 {
 	auto cmp = [](const Node &left,const Node &right) { return ((left.f) < (right.f)); };
 	std::set<Node, decltype(cmp)> openList(cmp);
 
-	openList.insert(Node(0, source.distance(&dest), source,source));
+	openList.insert(Node(0, source.calculateH(dest), source,source));
 
 	while (!openList.empty()) {
 
@@ -35,11 +35,11 @@ bool aStar::doAStar(Point2D& source, Point2D& dest, std::list<Point2D> *path)
 		}
 
 
-		std::vector<Point2D> arroundPoints;
+		std::vector<Layout> arroundPoints;
 		getAvailablePointsArround(&arroundPoints,curr.pos);
 
-		for (Point2D & arroundPoint : arroundPoints) {
-			Node arroundNode = Node(curr.g + 1, arroundPoint.distance(&dest), arroundPoint, curr.pos);
+		for (Layout & arroundPoint : arroundPoints) {
+			Node arroundNode = Node(curr.g + arroundPoint.getG(), arroundPoint.calculateH(dest), arroundPoint, curr.pos);
 
 			bool skip = false;
 			for (Node node : closedList) {
@@ -69,7 +69,7 @@ bool aStar::doAStar(Point2D& source, Point2D& dest, std::list<Point2D> *path)
 	return false;
 }
 
-bool aStar::findParentPoint(Point2D & p, Point2D *parentBuffer)
+bool aStar::findParentPoint(Layout & p, Layout *parentBuffer)
 {
 	for (Node & node : closedList) {
 		if (node.pos == p) {//!(node.pos == node.parent)
@@ -80,16 +80,16 @@ bool aStar::findParentPoint(Point2D & p, Point2D *parentBuffer)
 	return false;
 }
 
-bool aStar::tracePath(Point2D & start, Point2D& end, std::list<Point2D>* point)
+bool aStar::tracePath(Layout & start, Layout& end, std::list<Layout>* point)
 {
-	Point2D buffer = end;
+	Layout buffer = end;
 	while (!(buffer == start)) {
 		point->insert(point->begin(), buffer);
 		if (!findParentPoint(buffer, &buffer)) {
-			printf("Fail to Tracing X: %d , Y: %d\n",buffer.getIntX(),buffer.getIntY());
+			//printf("Fail to Tracing X: %d , Y: %d\n",buffer.getIntX(),buffer.getIntY());
 			return false;
 		}
-		printf("Success Tracing To X: %d , Y: %d\n", buffer.getIntX(), buffer.getIntY());
+		//printf("Success Tracing To X: %d , Y: %d\n", buffer.getIntX(), buffer.getIntY());
 	}
 
 	return true;

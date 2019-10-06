@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include <stdlib.h>
 #include <set>
+#include "aStar.h"
 #define PI 3.14
 
 #define ITEM_SOCKET_SLOT_MAX_NUM 6
@@ -95,7 +96,7 @@ const std::set<DWORD> BossMap({ NINE_TAILS_ID ,GIANT_TURTLE_ID ,ORC_CHEF,GHOST_T
 typedef DWORD* CLASS_POINTER;
 
 
-class Point2D {
+class Point2D{
 public:
 	Point2D(float x = 0.f, float y= 0.f) { this->x = x; this->y = y; }
 
@@ -108,6 +109,8 @@ public:
 
 	inline void setIntX(int x) { this->x = x; }
 	inline void setIntY(int y) { this->y = y; }
+
+	bool operator==(Point2D & a) { return getIntX() == a.getIntX() && getIntY() == a.getIntY(); }
 
 	float x;
 	float y;

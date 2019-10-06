@@ -121,6 +121,7 @@
     </QtUic>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="aStar.cpp" />
     <ClCompile Include="Bot.cpp" />
     <ClCompile Include="BotFeature.cpp" />
     <ClCompile Include="BotProtectionBypass.cpp" />
@@ -143,6 +144,7 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Memory.cpp" />
     <ClCompile Include="MetinSDK.cpp" />
+    <ClCompile Include="Movement.cpp" />
     <ClCompile Include="NetworkProcessHook.cpp" />
     <ClCompile Include="PatternReader.cpp" />
     <ClCompile Include="Patterns.cpp" />
@@ -159,6 +161,7 @@
     <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="aStar.h" />
     <ClInclude Include="Bot.h" />
     <ClInclude Include="BotFeature.h" />
     <ClInclude Include="BotMode.h" />
@@ -184,6 +187,7 @@
     <ClInclude Include="JMPHook.h" />
     <ClInclude Include="Memory.h" />
     <ClInclude Include="MetinSDK.h" />
+    <ClInclude Include="Movement.h" />
     <ClInclude Include="NetworkProcessHook.h" />
     <ClInclude Include="PatternReader.h" />
     <ClInclude Include="Patterns.h" />
