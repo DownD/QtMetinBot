@@ -32,7 +32,7 @@ void Movement::Point::getChilds(std::list<Layout>* path)
 	CPythonBackground* background = sdk->getPythonBackground();
 
 	if (!background->isLocationBlocked(x + x_DeltaPathFinding, y)) {
-		path->insert(Point2D(x + 1, y));
+		path->insert((Layout)Point(x + 1, y));
 	}
 
 	if (!isLocked(x + 1, y + 1)) {

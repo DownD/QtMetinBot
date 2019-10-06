@@ -11,7 +11,7 @@ aStar::~aStar()
 {
 }
 
-bool aStar::doAStar(Layout& source, Layout& dest, std::list<Layout> *path)
+bool aStar::doAStar(Layout* source, Layout* dest, std::list<Layout*> *path)
 {
 	auto cmp = [](const Node &left,const Node &right) { return ((left.f) < (right.f)); };
 	std::set<Node, decltype(cmp)> openList(cmp);
@@ -35,11 +35,11 @@ bool aStar::doAStar(Layout& source, Layout& dest, std::list<Layout> *path)
 		}
 
 
-		std::vector<Layout> arroundPoints;
+		std::vector<Layout*> arroundPoints;
 		getAvailablePointsArround(&arroundPoints,curr.pos);
 
-		for (Layout & arroundPoint : arroundPoints) {
-			Node arroundNode = Node(curr.g + arroundPoint.getG(), arroundPoint.calculateH(dest), arroundPoint, curr.pos);
+		for (Layout* arroundPoint : arroundPoints) {
+			Node arroundNode = Node(curr.g + arroundPoint->getG(), arroundPoint->calculateH(dest), arroundPoint, curr.pos);
 
 			bool skip = false;
 			for (Node node : closedList) {
@@ -69,7 +69,7 @@ bool aStar::doAStar(Layout& source, Layout& dest, std::list<Layout> *path)
 	return false;
 }
 
-bool aStar::findParentPoint(Layout & p, Layout *parentBuffer)
+bool aStar::findParentPoint(Layout* p, Layout *parentBuffer)
 {
 	for (Node & node : closedList) {
 		if (node.pos == p) {//!(node.pos == node.parent)
@@ -80,7 +80,7 @@ bool aStar::findParentPoint(Layout & p, Layout *parentBuffer)
 	return false;
 }
 
-bool aStar::tracePath(Layout & start, Layout& end, std::list<Layout>* point)
+bool aStar::tracePath(Layout* start, Layout* end, std::list<Layout*>* point)
 {
 	Layout buffer = end;
 	while (!(buffer == start)) {

@@ -7,6 +7,8 @@ class Movement : BotFeature{
 
 private:
 	class Point : public Layout, Point2D {
+		Point(float x, float y) : Point2D(x, y) {};
+
 		//Heuristics function
 		virtual float calculateH(Layout & a) {
 			Point *p = (Point*)&a;
