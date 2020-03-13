@@ -5,11 +5,11 @@ I created this bot as way to learn more about reverse engeneering alongside OOP 
 
 RE related things:
 
-//Function CPythonCharacterManager::__RenderSortedAliveActorList stores a static vector //that corresponds to the map of every instance //Currently wallhack dont work for game objects - TestActorCollision can be a fix for this, to be analyzed
+- Function "CPythonCharacterManager::__RenderSortedAliveActorLis"t stores a static vector that corresponds to the map of every instance. - Currently wallhack dont work for game objects - TestActorCollision can be a fix for this, to be analyzed
 
 To do List:
 
-Rethink Bot class, as of now it appears to go into an an explosion of classes for each feature Improve GUI 
+Rethink Bot class, as of now it appears to go into an explosion of classes for each feature
 - Final long term objective/sideProject, Develop a full working Vulkan GUI engine 
 - Do a more safe call and memory reading by checking for null pointer (Still thinking if is worth to sacrifice performance over error checking) 
 - Provide an Interface for Patterns class (Low priority)
