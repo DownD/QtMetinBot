@@ -1,5 +1,6 @@
 # MetinBot
-A bot currently under development, might be merged to a clientless bot on future
+A bot currently under development, might be merged to a clientless bot on future.
+Only for learning purposes.
 
 I created this bot as way to learn more about reverse engeneering alongside OOP code organization and GUI devolpment, as this game as a leaked (old) source client available in the internet making this game not too hard to start RE (Reverse Enggener) but still offering some challanges as some private servers implement different game systems and protection measures, wich some times become fun to bypass.
 
